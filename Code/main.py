@@ -26,12 +26,12 @@ def experiment1(file: str):
     counts: np.array(float) = (counts1 + counts2 + counts3)/3
     
     plt.figure()
-    plt.errorbar(voltage, counts, np.sqrt(1/(3*counts)), 1)
+    plt.errorbar(voltage, counts, np.sqrt(counts/3), 1)
     plt.yscale("log")
     plt.ylabel(r'$N(V)$')
     plt.xlabel(r'$V$ [V]')
     plt.grid(True)
-    plt.savefig('../Plots/ln(N(V)) vs V.pdf')
+    plt.savefig('../Plots/N(V) vs V.pdf')
     
 def experiments(file: str):
     
