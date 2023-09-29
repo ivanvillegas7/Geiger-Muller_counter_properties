@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 
 import fits
 
+import goodness
+
 def experiment1(file: str):
     
     data = np.loadtxt(f'../Data/{file}.txt', skiprows=1)
@@ -41,13 +43,13 @@ def experiments(file: str):
     
     err_BG: float
     
-    if file=='exp2':
+    if file=='exp2-1' or file=='exp2-2':
         
         BG = 6
         
         err_BG = np.abs(BG/10)
         
-    elif file=='exp3':
+    elif file=='exp3-1' or file=='exp3-2':
         
         BG = 10
         
@@ -108,17 +110,19 @@ def experiments(file: str):
     
     element: str
     
-    if file=='exp2':
+    if file=='exp2-1' or file=='exp2-2':
         
         element='Ba'
         
-    elif file=='exp3':
+    elif file=='exp3-1' or file=='exp3-2':
         
         element='Pa'
         
     err: float = (np.log(2)/popt_lin[1]**2)*cov[1][1]
     
     print(f'\nHalf-life for {element}: ({HL}±{err}) s')
+    
+    goodness.how_good(time, counts, file)
     
 def main():
     
