@@ -74,8 +74,11 @@ def experiments(file: str):
     counts_: np.array(float) = popt_exp[0]*np.exp(-1 * popt_exp[1] * time_)
     
     plt.figure()
-    plt.errorbar(time, counts, np.sqrt(err_counts), 0.5, ecolor='blue', linestyle='none', marker='.', label='Experimental data')
-    plt.plot(time_, counts_, label=f'N(t)={popt_exp[0]: .3f} exp(-{popt_exp[1]: .3f}t)', color='green')
+    plt.errorbar(time, counts, np.sqrt(err_counts), 0.5, ecolor='blue',\
+                 linestyle='none', marker='.', label='Experimental data')
+    plt.plot(time_, counts_,\
+             label=f'N(t)={popt_exp[0]: .3f} exp(-{popt_exp[1]: .3f}t)',\
+             color='green')
     plt.ylabel(r'$N(t)$')
     plt.xlabel(r'$t$ [s]')
     plt.grid(True)
@@ -89,8 +92,12 @@ def experiments(file: str):
     l_counts_: np.array(float) = -popt_lin[1]*time_+popt_lin[0]
     
     plt.figure()
-    plt.errorbar(time, np.log(counts), np.sqrt(err_counts/counts**2), 0.5, ecolor='blue', linestyle='none', marker='.', label='Experimental data')
-    plt.plot(time_, l_counts_, label=f'N(t)=-{popt_lin[1]: .3f}t+{popt_lin[0]: .3f}', color='green')
+    plt.errorbar(time, np.log(counts), np.sqrt(err_counts/counts**2), 0.5,\
+                 ecolor='blue', linestyle='none', marker='.',\
+                 label='Experimental data')
+    plt.plot(time_, l_counts_,\
+             label=f'N(t)=-{popt_lin[1]: .3f}t+{popt_lin[0]: .3f}',\
+             color='green')
     plt.ylabel(r'ln($N(t)$)')
     plt.xlabel(r'$t$ [s]')
     plt.grid(True)
@@ -111,7 +118,7 @@ def experiments(file: str):
         
     err: float = (np.log(2)/popt_lin[1]**2)*cov[1][1]
     
-    print(f'\nHalf-live for {element}: ({HL}±{err}) s')
+    print(f'\nHalf-life for {element}: ({HL}±{err}) s')
     
 def main():
     
@@ -121,10 +128,10 @@ def main():
     
     print("")
     
-    experiments(input('Name of the file with the data for determining the half-live of metastable barium: '))
+    experiments(input('Name of the file with the data for determining the half-life of metastable barium: '))
     
     print("")
     
-    experiments(input('Name of the file with the data for determining the half-live of metastable protactinium: '))
+    experiments(input('Name of the file with the data for determining the half-life of metastable protactinium: '))
     
 main()
